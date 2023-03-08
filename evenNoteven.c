@@ -50,7 +50,7 @@ void printArr(int a[],int n)
 
 int main()
 {
-	 nt a[N]={};
+	int a[N]={};
 	int k = 0;
 	int i = 0;
 	char nextch;

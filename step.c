@@ -37,11 +37,11 @@ int main()
 	input(n)
 	int a[n * 3];
 	for (int i = 0; i < n; ++i)
+	{
+		do
 		{
-			do{
 			scanf("%d%c", &k,&nextch);
 			a[j] = k;
-			++j;
 			fflush(stdin);
 		}while(nextch != '\n');
 	}
