@@ -18,7 +18,6 @@ x - для данного примера это -6.
 int main()
 {
     char s[5] = {};
-    //printf("input string:");
     scanf("%5s",s);
     
     if (s[0] == 120 && s[1] == '+')
@@ -29,12 +28,11 @@ int main()
         printf("%d\n", s[4]-s[0]);
     if (s[2] == 120 && s[1] == '-')
         printf("%d\n", s[0]-s[4]);
-    
+    if (s[4] == 120 && s[1] == '+')
+        printf("%d\n", s[2]+s[0]-96);
+    if (s[4] == 120 && s[1] == '-')
+        printf("%d\n", s[0]-s[2]);
+        
     //printf("n1 = %d, n2 = %d, znak = %c, itog = %d\n", n1,n2,znak,itog);
-
-    
-    
-    
-    
     return 0;
 }
