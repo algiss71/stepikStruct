@@ -46,69 +46,72 @@ void printArr(int a[],int n)
 int main()
 {
     int n = 0;
-    char nextch;
-    char buf[20];
-    int j = 0;
     printf("Input N string: ");
-    
     scanf("%d",&n);
     while (getchar() != '\n');
     char s[n][20];
-    for (int i = 0; i < n; i++)
-    {
-        do{
-		    scanf("%s%c", buf,&nextch);
-			strcpy(s[j],buf);
-		    ++j;
-		    fflush(stdin);
-	    }while(nextch != '\n');
+    int a[n];
+    //input data
+    for (int i = 0; i < n; i++)                 
+    {               
+        if(!fgets (s[i], sizeof s[i], stdin))  
+            break;                             
+        int len = strlen (s[i]);               
+        if (s[i][len-1] == '\n')               
+            s[i][--len] = '\0';                
     }
-    // for (int i = 0; i < n; i++)                 /* for a max of NWDS */
-    // {               
-    //     //if(!fgets (s[i], sizeof s[i], stdin))  /* read/validate */
-    //     if(scanf("%s",s[i]))
-    //         break;                              /* protect against EOF */
-    //     int len = strlen (s[i]);                /* get length */
-    //     if (s[i][len-1] == '\n')                /* check for trailing '\n' */
-    //         s[i][--len] = '\0';                    /* overwrite with nulbyte  */
-    // }
-
-    for (int i = 0; i < n; i++)
+    /*for (int i = 0; i < n; i++)
     {
         printf("%s\n",s[i]);
     }
+    */
     
-    
+    // create array number
+    int num = 0;
+    for (int i = 0; i < n; i++)
+    {   
+        num = 0;
+        for (int j = 0; j < (int)strlen(s[i]); j++)
+        {
+            if (s[i][j] == ' ')
+            {
+                break;
+            }
+            num *= 10;
+            num += s[i][j] - 48;
+            
         
-    
-    
-    
-    
-    
-    
-    
-    // int a[N]={1,};
-    // int sum;
-    // int ai = 1;
-    // for (int i = 1; i < N; i++)
-    // {
-    //     sum = 0;
-    //     for (int j = 1; j <= i; j++)
-    //     {
-    //         if(i % j == 0)
-    //         {
-    //             sum += j;
-    //         }
-    //     }
-    //     if(sum % 2 != 0)
-    //     {
-    //         a[ai] = i;
-    //         ++ai;
-    //         //printf("i = %d, sum = %d\n",i,sum);
-    //     }
-    // }
-    // printf("-----------------------------------------------------------");
-    // printArr(a,ai);
+        }
+        a[i] = num;
+    }
+    //printf("-----------------------------------------------------------\n");
+
+    //printArr(a,n);
+    //int aitog[n];
+    //aitog[0] = 1;
+    int sum;
+    //int ai = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum = 0;
+        for (int j = 1; j <= a[i]; j++)
+        {
+            if(a[i] % j == 0)
+            {
+                sum += j;
+            }
+        }
+
+        if(sum % 2 != 0)
+        {
+            // aitog[ai] = i;
+            // ++ai;
+            // printf("i = %d, sum = %d\n",i,sum);
+             printf("%s\n",s[i]);
+        }
+    }
+    // printf("-----------------------------------------------------------\n");
+    // printArr(aitog,ai);
 
     return 0;
 }
