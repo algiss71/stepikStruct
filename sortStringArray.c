@@ -1,23 +1,26 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define R 12
 #define C 20
 char s[R][C]={
               "1 Putin",
               "11 Pushkin",
               "24  Lenin",
-              "6 Pilulkin",
+              "4 Pilulkin",
               "34 Sharikov",
-              "19 Ushakov",
+              "9 Ushakov",
               "81 Pupkin",
-              "92 Ivanov",
+              "2 Ivanov",
               "91 Petrov",
               "51 Sidorov",
-              "66 Izmailov",
+              "8 Izmailov",
               "100 Dergavin",
     };
+char tmp[R][C];
 int numA[R];
+int indexA[R];
 char stringA[R][C];
 void printArr(int a[],int n)
 {
@@ -29,55 +32,77 @@ void printArr(int a[],int n)
 	}
     printf("\b\b]\n");
 }
-void creatNumArray()
-{
-    int num;
-    for (int i = 0; i < R; i++)
-    {   
-        num = 0;
-        for (int j = 0; j < (int)strlen(s[i]); j++)
-        {
-            if (s[i][j] == ' ')
-                break;
-            
-            num *= 10;
-            num += s[i][j] - 48;
-            
-        }
-        numA[i] = num;
-    }
-}
 
-void creatStringArray()
+void creatArray()
 {
+    char * delim = " ";
     
     for (int i = 0; i < R; i++)
     {   
-        for (int j = (int)strlen(s[i]); j > 0 ; j--)
-        {
-            if(s[i][j] == ' ') break;;
-            stringA[i][j] = s[i][j];
-        }
-        
-       
+        numA[i] = atoi(strtok(tmp[i], delim));
+        strcpy (stringA[i] ,strtok(NULL, delim));
+        indexA[i] = i;   
+    }
+}
+
+void peculiarity()
+{
+    int sum;
+    for (int i = 0; i < R; i++)
+    {
+        sum = 0;
+        for (int j = 1; j <= numA[i]; j++)
+            if(numA[i] % j == 0)
+                sum += j;
+               
+        if(sum % 2 != 0)
+            printf("s[%d] = %s\n",i,s[i]);
+    }
+}
+
+void printSArray(int c, int r, char s[][c])
+{
+    printf("["); 
+    for (int i = 0; i < r; i++)
+    {
+         printf("%s, ",s[i]);
+    }
+    printf("\b\b]\n");
+}
+void printAllArray()
+{
+    printArr(indexA,R);
+    printArr(numA,R);
+    printf("["); 
+    for (int i = 0; i < R; i++)
+    {
+         printf("%s, ",stringA[i]);
+    }
+    printf("\b\b]\n");
+}
+void addTmpArray()
+{
+    for (int i =0; i < R; i++)
+    {
+        strcpy(tmp[i],s[i]);
     }
 }
 int main()
 {
-    for (int i = 0; i < R; i++)
-    {
-        printf("%s\n",s[i]);
-    }
     
-    creatNumArray();
-    printArr(numA,R);
-    creatStringArray();
+    addTmpArray();
+    
+    printf("["); 
     for (int i = 0; i < R; i++)
     {
-        printf("%s\n",stringA[i]);
+         printf("%s, ",tmp[i]);
     }
-
-
+    printf("\b\b]\n");
+    printSArray(C,R, s);
+    creatArray();
+    printSArray(C,R, stringA);
+    peculiarity();
+    
     return 0;
 }
 
