@@ -1,1 +1,3 @@
 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
+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
+https://github.com/algiss71/stepikStruct.git/
