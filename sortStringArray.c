@@ -35,8 +35,8 @@ void printArr(int a[],int n)
 
 void creatArray()
 {
-    char * delim = " ";
-    
+    char *delim = " ";
+    int len = 0;
     for (int i = 0; i < R; i++)
     {   
         numA[i] = atoi(strtok(tmp[i], delim));
@@ -82,7 +82,7 @@ void printAllArray()
 }
 void addTmpArray()
 {
-    for (int i =0; i < R; i++)
+    for (int i = 0; i < R; i++)
     {
         strcpy(tmp[i],s[i]);
     }
@@ -92,17 +92,18 @@ int main()
     
     addTmpArray();
     
-    printf("["); 
-    for (int i = 0; i < R; i++)
-    {
-         printf("%s, ",tmp[i]);
-    }
-    printf("\b\b]\n");
+    //printf("["); 
+    // for (int i = 0; i < R; i++)
+    // {
+    //      printf("%s, ",tmp[i]);
+    // }
+    // printf("\b\b]\n");
     printSArray(C,R, s);
     creatArray();
-    printSArray(C,R, stringA);
+    printSArray(C,R, s);
+    //printSArray(C,R, stringA);
     peculiarity();
-    
+    //printSArray(C,R, s);
     return 0;
 }
 
