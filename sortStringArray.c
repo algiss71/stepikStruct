@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -19,9 +18,12 @@ char s[R][C]={
               "100 Dergavin",
     };
 char tmp[R][C];
+char itog[R][C];
 int numA[R];
+
 int indexA[R];
 char stringA[R][C];
+int it = 0;
 void addTmpArray()
 {
     for (int i =0; i < R; i++)
@@ -29,20 +31,20 @@ void addTmpArray()
         strcpy(tmp[i],s[i]);
     }
 }
-void creatArray()
+void creatArray(int c, int r, char sa[][c])
 {
     char *delim = " ";
-    int len = 0;
-    for (int i = 0; i < R; i++)
+    for (int i = 0; i < r; i++)
     {   
-        numA[i] = atoi(strtok(tmp[i], delim));
+        numA[i] = atoi(strtok(sa[i], delim));
         strcpy (stringA[i] ,strtok(NULL, delim));
         indexA[i] = i;   
     }
 }
-void peculiarity()
+int peculiarity()
 {
     int sum;
+    int it = 0;
     for (int i = 0; i < R; i++)
     {
         sum = 0;
@@ -50,88 +52,62 @@ void peculiarity()
             if(numA[i] % j == 0)
                 sum += j;
                
-        if(sum % 2 != 0)
-            printf("s[%d] = %s\n",i,s[i]);
+        if(sum % 2 == 0)
+        {
+            continue;            
+        }
+        else
+        {
+            strncpy(itog[it],s[i], strlen(s[i]));
+            ++it;
+        }
     }
+    strncpy(itog[it],"end", 4);
+   return it; 
 }
-
 //========================================================================================
-void printArr(int a[],int n)
-{
-    printf("[");
-
+void printArr(int a[],int n){
+    
+    printf("["); 
 	for (int i = 0; i < n; ++i)
-	{
 		printf("%d, ",a[i]);
-	}
     printf("\b\b]\n");
 }
-
-
-void printSArray(int c, int r, char s[][c])
-{
+void printSArray(int c, int r, char s[][c]){
+    
     printf("["); 
     for (int i = 0; i < r; i++)
-    {
-         printf("%s, ",s[i]);
-    }
+        printf("%s, ",s[i]);
     printf("\b\b]\n");
 }
-<<<<<<< HEAD
-void printAllArray()
-{
-    printArr(indexA,R);
-    printArr(numA,R);
-    printf("["); 
-    for (int i = 0; i < R; i++)
-    {
-         printf("%s, ",stringA[i]);
-    }
-    printf("\b\b]\n");
-}
-void addTmpArray()
-{
-    for (int i = 0; i < R; i++)
-    {
-        strcpy(tmp[i],s[i]);
-    }
-}
-=======
-
-
-
->>>>>>> 5a312faabc5691ce35eafd64e73bcec1bb039e2c
+//========================================================================================
 int main()
 {
-    //printSArray(C,R, s);
-    
+    int itog_size = 0;
     addTmpArray();
-        
+
     
-<<<<<<< HEAD
-    //printf("["); 
-    // for (int i = 0; i < R; i++)
-    // {
-    //      printf("%s, ",tmp[i]);
-    // }
-    // printf("\b\b]\n");
-    printSArray(C,R, s);
-    creatArray();
-    printSArray(C,R, s);
-    //printSArray(C,R, stringA);
-=======
-        
-    creatArray();
-    //printSArray(C,R, tmp);
+
+    creatArray(C,R,tmp); 
+   
+   
     
-    //printSArray(C,R, stringA);
-    //printArr(numA,R);
->>>>>>> 5a312faabc5691ce35eafd64e73bcec1bb039e2c
-    peculiarity();
-    //printSArray(C,R, s);
+   itog_size = peculiarity();
+    
+   // printf("it = %d\n",itog_size);
+    //printSArray(C,R,itog);
+
+    creatArray(C,itog_size,itog);
+    
+    // printSArray(C,R,itog);
+    // printSArray(C,itog_size,itog);
+    printArr(numA,itog_size);
+   
+    printSArray(C,itog_size,stringA);
+   
     return 0;
 }
-
+//========================================================================================
 
 /* This program would sort the input strings in
  * an ascending order and would display the same
