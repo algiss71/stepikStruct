@@ -17,7 +17,7 @@ x - для данного примера это -6.
 #include <stdio.h>
 int main()
 {
-    char s[5] = {};
+    char s[5] = {""};
     scanf("%5s",s);
     
     if (s[0] == 120 && s[1] == '+')

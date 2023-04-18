@@ -107,6 +107,76 @@ int main()
    
     return 0;
 }
+
+/*
+
+    int a[R]={0};
+    char tempstr[25];
+
+
+    // create array number
+    int num;
+    for (int i = 0; i < R; i++)
+    {
+        num = 0;
+        for (int j = 0;s[i][j] != ' ' ; j++)
+        {
+            num *= 10;
+            num += s[i][j]-48;
+        }
+        a[i] = num;
+    }
+
+    printf("-----------------------------------------------------------\n");
+
+    for(int i = 1; i < R; ++i)
+    {
+        int k = i;
+        while (k > 0 && a[k-1] > a[k])
+        {
+            int tmp = a[k - 1];
+            a[k - 1] = a[k];
+            a[k] = tmp;
+            strcpy(tempstr,s[k-1]);
+            strcpy(s[k-1],s[k]);
+            strcpy(s[k],tempstr);
+            k -= 1;
+        }
+    }
+    printArr(a,R);
+    printf("-----------------------------------------------------------\n");
+    for (int i = 0; i < R; i++)
+    {
+        printf("%s\n",s[i]);
+    }
+
+
+
+//    printArr(a,R);
+//    int aitog[R];
+//    aitog[0] = 1;
+//    int sum;
+//    int ai = 0;
+//    for (int i = 0; i < R; i++)
+//    {
+//        sum = 0;
+//        for (int j = 1; j <= a[i]; j++)
+//            if(a[i] % j == 0)  sum += j;
+//        if(sum % 2 != 0)
+//        {
+//             aitog[ai] = i;
+//             ++ai;
+//            printf("i = %d, sum = %d\n",i,sum);
+//            //printf("%s\n",s[i]);
+//        }
+//    }
+    // printf("-----------------------------------------------------------\n");
+     //printArr(aitog,ai);
+
+    return 0;
+}
+
+*/
 //========================================================================================
 
 /* This program would sort the input strings in

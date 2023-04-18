@@ -24,51 +24,50 @@
 993
 */
 #include <stdio.h>
-void printArr(int a[],int n)
-{
+#include <stdlib.h>
+void printArr(int arr[], int n){
 	for (int i = 0; i < n; ++i)
-	{
-		printf("arr[%d] = %d \n",i, a[i]);
-	}
+		printf("arr[%d] = %d\n",i, arr[i]);
+}
+int minArr(int arr[], int n){
+	int min = arr[0];
+	for (int i = 1; i < n; ++i)
+	  	if(arr[i] < min) min = arr[i];
+
+	return min; 
 }
 
 
 int main()
 {
-	 int n = 0;
-	// scanf("%d",&n);
+	int n;
+	scanf("%d",&n);
 
-	int a[] = {1,11,10,31,33,103,993,29,23,66,13,333};
-	n = sizeof(a)/sizeof(a[0]);
-	int b[n];
-	//int k = 0;
-	//int i = 0;
+	//int a[] = {1,11,10,31,33,103,993,29,23,66,13,333};
+	//n = sizeof(a) / sizeof(a[0]);
+	int *a = (int*)malloc(n * sizeof(int));
+	int k = 0;
+	int i = 0;
 	int count = 0;
-	// char nextch;
-	// do{
-	// 	scanf("%d%c", &k,&nextch);
-	// 	a[i] = k;
-	// 	++i;
-	// 	fflush(stdin);
-	// }while(nextch != '\n' && i < n);
+	char nextch;
+	do{
+	 	scanf("%d%c", &k,&nextch);
+	 	//if(k % 10 == 3)
+		//{
+			a[i] = k;
+			++i;
+		//	printf("%d\n",a[i]);
+		//}	
+	 	
+	 	fflush(stdin);
+	}while(nextch != '\n' && i < n);
 		
-	for (int j = 0; j < n; ++j)
-	{
-		if(a[j] % 10 == 3)
-		{
-			b[count++] = a[j];
-			
-		}
-	  	
-	}  
-	printArr(b,count);
-	
-	int min = b[0];
-	for (int j = 1; j < count; ++j)
-	{
-	  	if(b[j] < min) min = b[j]; 
-	}   
-	printf("%d\n",min);
-	
+	// for (int j = 0; j < n; ++j)
+	// 	if(a[j] % 10 == 3)
+	// 		b[count++] = a[j];
+
+	printArr(a,count);
+	//printf("%d\n",minArr(b,count));
+	free(a);
 	return 0;
 }
