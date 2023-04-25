@@ -6,31 +6,30 @@ void capcha(int n)
 {
     int nn = n;
     size_t num = 0;
-
-    while (nn>0)
-    {
+    while (nn > 0)    {
         nn /= 10;
         ++num;
     }
     
     int* arrNum = (int*)malloc(num*sizeof(int));
-    for (size_t i = num - 1; n > 0; --i)
-    {
+    for (size_t i = num - 1; n > 0; --i)    {
         arrNum[i] = n % 10;
         n /= 10;
     }
         
-    for (size_t i = 0; i < num; i++)
-    {
-        for (int j = arrNum[i] * 2; j < 80; j += 20) 
-        {
+    int i = 0;
+    for (i = arrNum[i] * 2; i < 80; i += 20){
+        for (size_t j = 0; j < num; j++){
             printf("%c%c", cap[j],cap[j+1]);
-        }    
-        printf("\n");
-    }
+        }
+        printf("\n");    
+    }    
+        
+    
     
     printf("\n");
 }
+
 int main() {
 
     int n = 0;
